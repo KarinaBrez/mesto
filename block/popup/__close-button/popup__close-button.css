@@ -4,7 +4,7 @@
    margin-left: 450px;
    width: 40px;
    height: 40px;
-   background-image:url('../../../images/Close_Icon.png');
+   background-image: url('../../../images/Close_Icon.png');
    background-color: #000000;
    background-position: center;
    background-repeat: no-repeat;
@@ -18,8 +18,8 @@
 
 @media(max-width:440px){
   .popup__close-button{
-     margin-top:76.62px;
-     margin-left:264.62px;
+     margin-top: 76.62px;
+     margin-left: 264.62px;
      width: 26px;
      height: 26px;
   }

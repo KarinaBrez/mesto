@@ -9,7 +9,7 @@
 }
 @media (max-width: 990px){
   .profile{
-     grid-template-columns: 1fr ; 
+     grid-template-columns: 1fr;
      grid-template-rows: 1fr 1fr 1fr minmax(1fr 282px);
      padding-bottom: 36px;
    } 
