@@ -1,18 +1,16 @@
 .popup__field-name{
-    padding: 0;
-    width: 358px;
-    height: 14px;
-    font-weight: normal;
-    font-size: 14px;
-    line-height: 17px;
-    border: none;
-    
-    }
-    
-    @media(max-width:440px){
-        .popup__field-name{
-            margin: 0 22px 0;
-            width: 238px;  
-        }
-    }
+  padding: 0;
+  width: 358px;
+  height: 14px;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 17px;
+  border: none;
+}
+@media(max-width:440px){
+  .popup__field-name{
+     margin: 0 22px 0;
+     width: 238px;  
+  }
+}
     

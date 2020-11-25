@@ -1,20 +1,19 @@
 .popup__header{
-    margin-top: 34px;
-    margin-bottom: 54px;
-    max-width: 330px;
-    font-weight: 900;
-    font-size: 24px;
-    color: #000000;
-    }
-    
-    @media(max-width:440px){
-        .popup__header{
-            display: block;
-            margin-top: 25px;
-            margin-left: 22px;
-            margin-bottom: 75px;
-            max-width: 238px;
-            font-size: 18px; 
-            line-height: 22px;
-        }
-    }
+  margin-top: 34px;
+  margin-bottom: 54px;
+  max-width: 330px;
+  font-weight: 900;
+  font-size: 24px;
+  color: #000000;
+}
+ @media(max-width:440px){
+  .popup__header{
+     display: block;
+     margin-top: 25px;
+     margin-left: 22px;
+     margin-bottom: 75px;
+     max-width: 238px;
+     font-size: 18px; 
+     line-height: 22px;
+  }
+}

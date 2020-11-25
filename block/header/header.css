@@ -1,14 +1,12 @@
 .header{
-    margin: 0;
-    position: relative;
-    padding: 45px 15.6% 36.25px;
+  margin: 0;
+  padding: 45px 15.6% 36.25px;
 }
 
 @media (max-width: 320px){
-    .header{
-    padding: 28px 0 42px;
-    } 
-
+  .header{
+     padding: 28px 0 42px;
+  } 
 }
 
 

@@ -1,30 +1,23 @@
-
 .element__button{
-    align-self: center;
-    justify-self: center;
-    width: 20.76px;
-    height: 18.13px;
-    background-color: #FFFFFF;
-    background-image:url(../../../images/like.png);
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size:contain;
-    border: none;
-    transition: opacity 1s ease;
-    
-    }
+  align-self: center;
+  justify-self: center;
+  width: 20.76px;
+  height: 18.13px;
+  background-color: #FFFFFF;
+  background-image:url(../../../images/like.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size:contain;
+  border: none;
+  transition: opacity 1s ease;
+}
 
-    .profile__button-add:hover{
-        opacity:0.6;
-    }
+.element__button:hover{
+  opacity:0.6;
+}
 
-    .profile__button-add:active{
-        background-image:url(../../../images/Like_black.png);
-    }
-
-    @media (max-width: 320px){
-        .element__buttn{
-        padding-right:18.23px;
-        } 
-    
-    }
+@media (max-width: 320px){
+  .element__buttn{
+     padding-right:18.23px;
+  } 
+}
