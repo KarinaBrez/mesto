@@ -1,5 +1,5 @@
 .header__logo{
-    margin-bottom:41px ;
+    margin-bottom:41px;
     max-width: 142px;
     max-height: 33px;
     }
@@ -16,7 +16,7 @@
 
     @media (max-width: 141px){
         .header__logo{
-      margin-left: 0;   
+      margin-left: 0;
        max-width: 100%;
        max-height: 100%;
         } 
