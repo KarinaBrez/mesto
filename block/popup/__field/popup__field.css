@@ -19,7 +19,7 @@
 @media(max-width:295px){
   .popup__field{
     margin-left: 0;
-    width: 95%; 
+    width: 95%;
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
