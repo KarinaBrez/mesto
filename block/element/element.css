@@ -1,11 +1,12 @@
 .element{
   display: grid;
-  grid-template-columns: minmax(1fr 240px) 1fr;
+  grid-template-columns: minmax(1fr, 240px) 1fr 1fr;
   grid-template-rows: 1fr 79px;
   margin: 0;
   padding: 0;
   max-width: 880px;
   background: #FFFFFF;
   border-radius: 10px;
+  overflow: hidden;
     }
     

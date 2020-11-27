@@ -1,9 +1,0 @@
-.popup__content{
-}
-
-@media(max-width:440px){
-  .popup__content{
-     width: 282px;
-     max-height:322px;   
-    }
-}

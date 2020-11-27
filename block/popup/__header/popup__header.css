@@ -1,6 +1,7 @@
 .popup__header{
   margin-top: 34px;
-  margin-bottom: 54px;
+  margin-bottom: 24px;
+  margin-left: 36px;
   max-width: 330px;
   font-weight: 900;
   font-size: 24px;
@@ -15,5 +16,14 @@
      max-width: 238px;
      font-size: 18px;
      line-height: 22px;
+  }
+}
+@media(max-width:295px){
+  .popup__header{
+    margin-left: 0;
+    width: 95%; 
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
   }
 }

@@ -6,17 +6,16 @@
   box-sizing: border-box;
   border-radius: 2px;
   background-color:  #000000;
-  background-image:url(../../../images/plus.png);
+  background-image:url(../../../images/plus.svg);
   background-position: center;
   background-repeat: no-repeat;
   transition: opacity 1s ease;
 }
 .profile__button-add:hover{
+  cursor: pointer;
   opacity:0.6;
 }
-.profile__button-add:active{
-  background-image:url(../../../images/Like_black.png);
-}
+
 @media (max-width: 990px){
   .profile__button-add{
      width: 100%;

@@ -10,7 +10,6 @@
    <div class ="page">
       <header class ="header">
          <img class ="header__logo" src="images/Logo_mesto.svg" alt ="Логотип">
-         <hr class ="header__line">
      </header>
      <main class="content">
       <section class="profile">
@@ -18,9 +17,9 @@
         <div class="profile__info">
           <h1 class="profile__name">Жак-Ив Кусто</h1>
           <p class="profile__job">Исследователь океана</p> 
-          <button class="profile__button-edit"></button>
+          <button type ="button" class="profile__button-edit"></button>
         </div>
-        <button class="profile__button-add"></button>
+        <button type ="button" class="profile__button-add"></button>
       </section>
       <section class ="elements">
           <div class ="element">
@@ -31,27 +30,27 @@
           <div class ="element">
              <img class="element__image" src="images/cappadocia.jpg" alt="Воздушные шары">
              <h2 class ="element__title">Каппадокия</h2>
-             <button class="element__button"></button>
+             <button type ="button" class="element__button"></button>
           </div>
           <div class ="element">
              <img class="element__image" src="images/london.jpg" alt="Город">
              <h2 class ="element__title">Лондон</h2>
-             <div class="element__button"></div>
+             <div type ="button" class="element__button"></div>
           </div>
           <div class ="element">
              <img class="element__image" src="images/paris.jpg" alt="Ночной город">
              <h2 class ="element__title">Париж</h2>
-             <div class="element__button"></div>
+             <div type ="button" class="element__button"></div>
           </div>
           <div class ="element">
              <img class="element__image" src="images/positiana-min.jpg" alt="Дома в горах">
              <h2 class ="element__title">Позитано</h2>
-             <div class="element__button"></div>
+             <div type ="button" class="element__button"></div>
           </div>
           <div class ="element">
              <img class="element__image" src="images/stockholm.jpg" alt="Лестница">
              <h2 class ="element__title">Стокгольм</h2>
-             <div class="element__button"></div>
+             <div type ="button" class="element__button"></div>
           </div>
       </section>
      </main>
@@ -59,21 +58,17 @@
          <p class="footer__copyright">&copy; 2020 Mesto Russia</p>
      </footer> 
      <div class="popup">
-      <button type="button" class="popup__close-button"></button>
        <div class="popup__container">
-           <div class="popup__content">
+              <button type="button" class="popup__close-button"></button>
               <h2 class = "popup__header">Редактировать профиль</h2>
               <form class = "popup__form">
-               <input type="text" class ="popup__field-name">
-               <hr class ="popup__line">
-               <input type="text" class ="popup__field-job">
-               <hr class ="popup__line">
+               <input type="text" name="name" class ="popup__field popup__field_name">
+               <input type="text" name="job" class ="popup__field popup__field_job">
                <button type ="submit" class="popup__submit-button">Сохранить</button>
               </form> 
-           </div>
         </div>
         </div>
    </div>
-   <script src="index.js"></script>
+   <script src="./javascript/index.js"></script>
 </body>
 </html>
