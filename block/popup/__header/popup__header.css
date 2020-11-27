@@ -21,7 +21,7 @@
 @media(max-width:295px){
   .popup__header{
     margin-left: 0;
-    width: 95%; 
+    width: 95%;
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
