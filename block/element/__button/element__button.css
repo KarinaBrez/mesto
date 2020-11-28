@@ -1,7 +1,8 @@
 .element__button{
   align-self: center;
   justify-self: center;
-  margin-right: -30px;
+  margin:0;
+  padding: 0;
   width: 20.76px;
   height: 18.13px;
   background-color: #FFFFFF;
@@ -19,9 +20,4 @@
 }
 .element__button:focus{
   background-image:url(../../../images/Like_black.svg);
-}
-@media (max-width: 320px){
-  .element__buttn{
-     padding-right:18.23px;
-  } 
 }

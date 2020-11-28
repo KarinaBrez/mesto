@@ -2,7 +2,7 @@
   margin: 0;
   max-width: 168.75px;
   max-height: 127.5px;
-  object-fit: contain;
+  object-fit: cover;
   border-radius: 127.5px;
 }
 @media (max-width: 990px){

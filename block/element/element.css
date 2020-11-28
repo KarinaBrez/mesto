@@ -1,6 +1,6 @@
 .element{
   display: grid;
-  grid-template-columns: minmax(1fr, 240px) 1fr 1fr;
+  grid-template-columns: 240px 1fr;
   grid-template-rows: 1fr 79px;
   margin: 0;
   padding: 0;
@@ -8,5 +8,11 @@
   background: #FFFFFF;
   border-radius: 10px;
   overflow: hidden;
-    }
-    
+}
+
+@media (max-width:284px){
+  .element{
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
