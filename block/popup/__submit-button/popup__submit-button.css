@@ -14,7 +14,7 @@
 }
 .popup__submit-button:hover{
   cursor: pointer;
-  opacity: 0.8
+  opacity: 0.8;
 }
 @media(max-width:440px){
   .popup__submit-button{
@@ -22,14 +22,14 @@
      margin-left: 22px;
      margin-bottom: 25px;
      width: 238px;
-     height: 46px; 
+     height: 46px;
      font-size: 14px;
-     line-height: 17px;  
+     line-height: 17px;
   }
 }
 @media(max-width:295px){
   .popup__submit-button{
     margin-left: 0;
-     width: 95%; 
+     width: 95%;
   }
 }
