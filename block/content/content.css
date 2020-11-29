@@ -6,27 +6,18 @@
   
 @media (max-width: 409px){
   .content{
-     margin:0 15.5% 0;
+     margin:0 14% 0;
      padding:0 0 48px;
+     max-width: 282px;
   } 
   
  }
   
-@media (max-width: 341px){
+@media (max-width: 390px){
   .content{
-     margin:0 8.6% 0;
+     margin:0 auto 0;
   } 
   
 }
   
-@media (max-width: 320px){
-  .content{
-     margin:0 5.88% 0;
-  }  
-}
   
-@media (max-width: 304px){
-  .content{
-     margin:0 auto 0;
-   } 
-}
