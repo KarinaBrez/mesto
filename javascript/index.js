@@ -4,8 +4,8 @@ let profileCloseButtonNode = document.querySelector('.popup__close-button')
 let formElement = document.querySelector('.popup__form')
 let profileName = document.querySelector('.profile__name')
 let profileJob = document.querySelector('.profile__job')
-let nameInput = document.querySelector('.popup__field_name_value');
-let jobInput = document.querySelector('.popup__field_job_value'); 
+let nameInput = document.querySelector('.popup__field_value_name');
+let jobInput = document.querySelector('.popup__field_value_job'); 
 
 function getProfileInfo(){
     nameInput.value = profileName.textContent;
