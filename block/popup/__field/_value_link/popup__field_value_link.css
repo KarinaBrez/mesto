@@ -1,0 +1,10 @@
+.popup__field_value_link{
+
+}
+
+@media(max-width:440px){
+    .popup__field_value_link{
+       width: 200px;  
+     }
+  }
+  

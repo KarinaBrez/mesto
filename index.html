@@ -21,43 +21,22 @@
         </div>
         <button type ="button" class="profile__button-add"></button>
       </section>
-      <section class ="elements">
-          <div class ="element">
-             <img class="element__image" src="images/amsterdam.jpg" alt="Дома">
-             <h2 class ="element__title">Амстердам</h2>
-             <button class="element__button"></button>
-          </div>
-          <div class ="element">
-             <img class="element__image" src="images/cappadocia.jpg" alt="Воздушные шары">
-             <h2 class ="element__title">Каппадокия</h2>
-             <button type ="button" class="element__button"></button>
-          </div>
-          <div class ="element">
-             <img class="element__image" src="images/london.jpg" alt="Город">
-             <h2 class ="element__title">Лондон</h2>
-             <button type ="button" class="element__button"></button>
-          </div>
-          <div class ="element">
-             <img class="element__image" src="images/paris.jpg" alt="Ночной город">
-             <h2 class ="element__title">Париж</h2>
-             <button type ="button" class="element__button"></button>
-          </div>
-          <div class ="element">
-             <img class="element__image" src="images/positiana-min.jpg" alt="Дома в горах">
-             <h2 class ="element__title">Позитано</h2>
-             <button type ="button" class="element__button"></button>
-          </div>
-          <div class ="element">
-             <img class="element__image" src="images/stockholm.jpg" alt="Лестница">
-             <h2 class ="element__title">Стокгольм</h2>
-             <button type ="button" class="element__button"></button>
-          </div>
+      <section class ="elements"> 
+    
       </section>
      </main>
      <footer class ="footer">
          <p class="footer__copyright">&copy; 2020 Mesto Russia</p>
      </footer> 
-     <div class="popup">
+     <template class ="template">
+      <div class ="element">
+        <button type ="button" class ="element__button-delet"></button>
+        <img class="element__image" src=" " alt=" ">
+        <h2 class ="element__title"></h2>
+        <button type ="button" class="element__button"></button>
+     </div>
+     </template>
+     <div class="popup" id="popup_ed">
        <div class="popup__container">
               <button type="button" class="popup__close-button"></button>
               <h2 class = "popup__header">Редактировать профиль</h2>
@@ -67,7 +46,25 @@
                <button type ="submit" class="popup__submit-button">Сохранить</button>
               </form> 
         </div>
+     </div>
+        <div class="popup" id="popup_add">
+         <div class="popup__container popup__container_add ">
+                <button type="button" class="popup__close-button-add"></button>
+                <h2 class = "popup__header">Новое место</h2>
+                <form name="form" class = "popup__form popup__form_add ">
+                 <input type="text" name="place" class ="popup__field popup__field_value_place" placeholder="Название">
+                 <input type="url" name="link" class ="popup__field popup__field_value_link" placeholder="Ссылка на картинку">
+                 <button type ="submit" class="popup__submit-button popup__submit-button-add">Создать</button>
+                </form> 
+          </div>
         </div>
+        <div class="popup" id="popup_img">
+          <div class="popup__container popup__container_image">
+                 <button type="button" class="popup__close-button popup__close-button-img"></button>
+                 <img class ="popup__image" src="''" alt="">
+                 <h3 class ="popup__title"></h3>
+           </div>
+         </div>
    </div>
    <script src="./javascript/index.js"></script>
 </body>

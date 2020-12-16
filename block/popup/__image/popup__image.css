@@ -1,0 +1,12 @@
+.popup__image{
+    position: relative;
+    margin-top: 90px;
+    max-width: 75vw;
+    max-height: 75vh;
+}
+@media(max-width:320px){
+    .popup__image{
+        margin-top: 136px;
+    }
+  }
+  

@@ -6,6 +6,8 @@
   width: 430px;
   background-color: #FFFFFF;
   border-radius: 10px;
+  transition: all 0.8s ease 0s;
+
 }
 
 @media(max-width:440px){
