@@ -1,5 +1,5 @@
 let profileButtonNode = document.querySelector('.profile__button-edit')
-let popupNode = document.querySelector('.popup')
+const popupNode = document.querySelector('.popup')
 let profileCloseButtonNode = document.querySelector('.popup__close-button')
 let formElement = document.querySelector('.popup__form')
 let profileName = document.querySelector('.profile__name')
@@ -16,6 +16,7 @@ let placeInput = document.querySelector('.popup__field_value_place')
 let linkInput = document.querySelector('.popup__field_value_link')
 let fornAdd = document.querySelector('.popup__form_add')
 let formAddSubmitButton = document.querySelector('.popup__submit-button_add')
+const closeButtonPopupImage = document.querySelector('.popup__close-button-img')
 const initialCards = [
     {
         name: 'Архыз',
@@ -44,14 +45,10 @@ const initialCards = [
 ]; 
 
 
-function getProfileInfo(){
-    nameInput.value = profileName.textContent;
-    jobInput.value = profileJob.textContent;
-};
-
 function hadlyPopupOpenButton(popupNode) {
     popupNode.classList.add('popup_opened');
-    getProfileInfo()
+    nameInput.value = profileName.textContent;
+    jobInput.value = profileJob.textContent;
 };
 
 function handlePopupCloseButton(popupNode) {
@@ -66,12 +63,6 @@ function formSubmitHandler (event) {
     handlePopupCloseButton(popupEdForm);
 };
 
-//Поп-ап с изображением
-function handliPopupImageOpen (){
-    popupImageBig.classList.add('popup_opened'); 
-    const bigImage = documend.querySelector('.popup__image')
-    const titleImage = documend.querySelector('.popup_title')   
-}
 //Открытие и закрытие поп-апа с формой
 profileButtonNode.addEventListener ('click',()=> hadlyPopupOpenButton(popupEdForm))
 profileCloseButtonNode.addEventListener('click', ()=> handlePopupCloseButton (popupEdForm));
@@ -80,6 +71,9 @@ formElement.addEventListener('submit', formSubmitHandler);
 //Открытие и закрытие поп-апа с добавление мест
 popImageAddCloseButton.addEventListener('click', ()=> handlePopupCloseButton(popupAddImage));
 imageAddButton.addEventListener('click', ()=> hadlyPopupOpenButton(popupAddImage))
+
+//закрытие поп-апа с изображением
+closeButtonPopupImage.addEventListener('click', ()=> handlePopupCloseButton(popupImageBig));
 
 
 function readerList (){
@@ -93,31 +87,28 @@ function composeItem(item) {
     const newItem = templateElement.cloneNode(true);
     newItem.querySelector('.element__image').src = item.link;
     newItem.querySelector('.element__title').textContent = item.name;
-    const imageAddSubmitButton = document.querySelector('.popup__submit-button-add');
-    imageAddSubmitButton.addEventListener('click',addImage);
+    newItem.querySelector('.element__image').textContent = item.name;
     newItem.querySelector('.element__button').addEventListener('click', function (evt) {
         evt.target.classList.toggle('element__button_active');
     });
     newItem.querySelector('.element__button-delet').addEventListener('click',function (event){
-        const targetItem = event.target.closest('.element');
-        targetItem.remove();
+          event.target.closest('.element').remove()
     })
     newItem.querySelector('.element__image').addEventListener('click', (event) => {
-            popupImageBig.classList.add('popup_opened')
-            let popupCard = event.target.closest('.element')
+            hadlyPopupOpenButton(popupImageBig)
+            const  popupCard = event.target.closest('.element')
             let popupPicture = popupCard.querySelector('.element__image')
             let popupDescription = popupCard.querySelector('.element__title')
-            let bigImage = document.querySelector('.popup__image').src = popupPicture.src
-            let bigTitle = document.querySelector('.popup__title').textContent = popupDescription.textContent
+            document.querySelector('.popup__image').src = popupPicture.src
+            document.querySelector('.popup__title').textContent = popupDescription.textContent
+            document.querySelector('.popup__image').textContent = popupDescription.textContent
         })
         
     return newItem;  
 }
-function handlePopupImageCloseButton(popupImageBig) {
-    popupImageBig.classList.remove('popup_opened');
-};
-const closeButtonPopupImage = document.querySelector('.popup__close-button-img')
-closeButtonPopupImage.addEventListener('click', ()=> handlePopupCloseButton(popupImageBig));
+//Сохранение новых картинок
+const imageAddSubmitButton = document.querySelector('.popup__submit-button-add');
+imageAddSubmitButton.addEventListener('click',addImage);
 readerList()
 
 function addImage(event){
@@ -126,25 +117,7 @@ function addImage(event){
     const newTitle = placeInput.value;
     const newItem = composeItem({name: newTitle, link: newLink});
     listCardsElement.prepend(newItem);
-    placeInput.value = ' ';
-    linkInput.value = ' ';
+    fornAdd.reset()
     handlePopupCloseButton(popupAddImage)
 }
 
-//function showBigImage (){
-   // popupImageBig.classList.add('popup_opened') 
-   // let popupPicture = document.querySelector('.popup__image') 
-    //let popupDescription =document.querySelector('.popup_title')
-   // popupPicture = document.querySelector('.element__image').src
-    //popupDescription = document.querySelector('.element__title').textContent
-//}
-
-//const openBigImage = document.querySelector('.element__image').addEventListener('click', showBigImage)
-
-//newItem.querySelector('.element__image').addEventListener('click', (event) => {
-   // popupImageBig.classList.add('popup_opened')
-    //let popupPicture = event.target.closest('.element__image')
-    //let popupDescription = newItem.querySelector('.element__title')
-    //let bigImage = document.querySelector('.popup__image').src = popupPicture.src
-    //let bigTitle = document.querySelector('.popup_title').textContent = popupDescription.textContent
-//})
