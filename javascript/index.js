@@ -1,21 +1,21 @@
 const profileButtonNode = document.querySelector('.profile__button-edit')
 const popupNode = document.querySelector('.popup')
 const profileCloseButtonNode = document.querySelector('.popup__close-button')
-let formElement = document.querySelector('.popup__form')
+const formElement = document.querySelector('.popup__form')
 let profileName = document.querySelector('.profile__name')
 let profileJob = document.querySelector('.profile__job')
 let nameInput = document.querySelector('.popup__field_value_name');
 let jobInput = document.querySelector('.popup__field_value_job'); 
 const listCardsElement = document.querySelector('.elements');
-let popupEdForm = document.querySelector('#popup_ed')
-let popupAddImage = document.querySelector('#popup_add')
-let popupImageBig = document.querySelector('#popup_img')
-let imageAddButton = document.querySelector('.profile__button-add')
+const popupEdForm = document.querySelector('#popup_ed')
+const popupAddImage = document.querySelector('#popup_add')
+const popupImageBig = document.querySelector('#popup_img')
+const imageAddButton = document.querySelector('.profile__button-add')
 const popImageAddCloseButton = document.querySelector('.popup__close-button-add')
 let placeInput = document.querySelector('.popup__field_value_place')
 let linkInput = document.querySelector('.popup__field_value_link')
-let fornAdd = document.querySelector('.popup__form_add')
-let formAddSubmitButton = document.querySelector('.popup__submit-button_add')
+const fornAdd = document.querySelector('.popup__form_add')
+const formAddSubmitButton = document.querySelector('.popup__submit-button_add')
 const closeButtonPopupImage = document.querySelector('.popup__close-button-img')
 const initialCards = [
     {
@@ -100,14 +100,11 @@ function composeItem(item) {
     })
     newItem.querySelector('.element__image').addEventListener('click', (event) => {
             hadlyPopupOpenButton(popupImageBig)
-            const popupCard = event.target.closest('.element')
-            const popupPicture = popupCard.querySelector('.element__image')
-            let popupDescription = popupCard.querySelector('.element__title')
             const imagePopup = document.querySelector('.popup__image')
             const titlePopup = document.querySelector('.popup__title')
-            imagePopup.src = popupPicture.src
-            titlePopup.textContent = popupDescription.textContent
-            imagePopup.alt = popupDescription.textContent
+            imagePopup.src = item.link
+            titlePopup.textContent = item.name
+            imagePopup.alt = item.name
         })
         
     return newItem;  
