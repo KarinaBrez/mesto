@@ -3,13 +3,13 @@
 }
 
 @media(max-width:440px){
-    .popup__container{
+    .popup__container_add{
        width: 240px; 
     }
   }
 
   @media(max-width:295px){
-    .popup__container{
+    .popup__container_add{
        width: 100%;  
     }
   }

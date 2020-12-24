@@ -1,0 +1,16 @@
+.error{
+    display: block;
+    margin:5px 36px 0;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 15px;
+    color: #FF0000;
+    
+    }
+    
+    @media(max-width:440px){
+        .error{
+           width: 200px; 
+           margin:0 22px 0; 
+         }
+      }    

@@ -4,7 +4,7 @@
   position: relative;
   margin:195px auto 0;
   width: 430px;
-  max-height: 337px;
+  max-height: 370px;
   background-color: #FFFFFF;
   border-radius: 10px;
   transition: all 0.8s ease 0s;
@@ -13,6 +13,7 @@
 
 @media(max-width:440px){
   .popup__container{
+     margin:195px auto 0;
      width: 282px; 
   }
 }

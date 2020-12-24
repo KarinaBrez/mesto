@@ -1,0 +1,5 @@
+.popup__submit-button_invalid{
+    background-color: white;
+    border:1px solid rgb(0, 0, 0, 0.2); 
+    color: rgb(0, 0, 0, 0.2);
+  }

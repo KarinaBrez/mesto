@@ -1,7 +1,7 @@
 const profileButtonNode = document.querySelector('.profile__button-edit')
 const popupNode = document.querySelector('.popup')
 const profileCloseButtonNode = document.querySelector('.popup__close-button')
-const formElement = document.querySelector('.popup__form')
+const form = document.querySelector('.popup__form')
 const profileName = document.querySelector('.profile__name')
 const profileJob = document.querySelector('.profile__job')
 const nameInput = document.querySelector('.popup__field_value_name');
@@ -44,15 +44,39 @@ const initialCards = [
     }
 ]; 
 
+//закрытие поп-апа нажатием на Esc
+
+//document.addEventListener('keydown', function (e) {
+  //if (e.key === 'Escape') {
+   //const popupActive = document.querySelector('.popup_opened')
+   // handlePopupCloseButton(popupActive)
+    // }
+//});
+
+//const handlyKeyDown = (event) =>{
+   //if (e.key === 'Escape')
+   //console.log("press")
+   //const popupActive = document.querySelector('.popup_opened')
+   //handlePopupCloseButton(popupActive)
+//}
 
 function hadlyPopupOpenButton(popupNode) {
+    document.addEventListener('keydown', handleKeyDown);
     popupNode.classList.add('popup_opened');
-};
+    }
 
 function handlePopupCloseButton(popupNode) {
+    document.removeEventListener('keydown',handleKeyDown);
     popupNode.classList.remove('popup_opened');
-
 };
+
+const handleKeyDown = (e) => {
+    if (e.key === 'Escape') {
+        const popupActive = document.querySelector('.popup_opened')
+        handlePopupCloseButton(popupActive)
+        console.log('presed')
+         } 
+}
 
 function formSubmitHandler (event) {
     event.preventDefault();
@@ -64,11 +88,12 @@ function formSubmitHandler (event) {
 //Открытие и закрытие поп-апа с формой
 profileButtonNode.addEventListener ('click',()=> hadlyPopupOpenButton(popupEdForm),()=>{
     nameInput.value = profileName.textContent;
-    jobInput.value = profileJob.textContent;  
+    jobInput.value = profileJob.textContent; 
+
 }
 )
 profileCloseButtonNode.addEventListener('click', ()=> handlePopupCloseButton (popupEdForm));
-formElement.addEventListener('submit', formSubmitHandler);
+form.addEventListener('submit', formSubmitHandler);
 
 //Открытие и закрытие поп-апа с добавление мест
 popImageAddCloseButton.addEventListener('click', ()=> handlePopupCloseButton(popupAddImage));
@@ -123,4 +148,17 @@ function addImage(event){
     fornAdd.reset()
     handlePopupCloseButton(popupAddImage)
 }
+
+
+// закрытие поп-апа через оверлей
+const popupList = Array.from(document.querySelectorAll(".popup"));
+popupList.forEach((popupElement) => {
+popupElement.addEventListener("click",function(event) {
+ if (event.target == popupElement) {
+    popupElement.classList.remove('popup_opened');
+    }
+ });
+});
+
+
 
