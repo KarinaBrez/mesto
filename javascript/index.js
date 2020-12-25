@@ -51,7 +51,7 @@ function openPopup(popupNode) {
     popupNode.classList.add('popup_opened');
 }
 
-function closeButton(popupNode) {
+function closePopup(popupNode) {
     document.removeEventListener('keydown',handleKeyDown);
     popupNode.classList.remove('popup_opened');
 };
@@ -59,7 +59,7 @@ function closeButton(popupNode) {
 const handleKeyDown = (e) => {
     if (e.key === 'Escape') {
         const popupActive = document.querySelector('.popup_opened')
-        closeButton(popupActive)
+        closePopup(popupActive)
         console.log('presed')
          } 
 }
@@ -68,7 +68,7 @@ function formSubmitHandler (event) {
     event.preventDefault();
     profileName.textContent = nameInput.value;
     profileJob.textContent = jobInput.value;
-    closeButton(popupEdForm);
+    closePopup(popupEdForm);
 };
 
 //Открытие и закрытие поп-апа с формой
@@ -78,15 +78,15 @@ profileButtonNode.addEventListener ('click',()=>{
     openPopup(popupEdForm)
 
 })
-profileCloseButtonNode.addEventListener('click', ()=> closeButton (popupEdForm));
+profileCloseButtonNode.addEventListener('click', ()=> closePopup (popupEdForm));
 formEd.addEventListener('submit', formSubmitHandler);
 
 //Открытие и закрытие поп-апа с добавление мест
-popImageAddCloseButton.addEventListener('click', ()=> closeButton(popupAddImage));
+popImageAddCloseButton.addEventListener('click', ()=> closePopup(popupAddImage));
 imageAddButton.addEventListener('click', ()=> openPopup(popupAddImage))
 
 //закрытие поп-апа с изображением
-closeButtonPopupImage.addEventListener('click', ()=> closeButton(popupImageBig));
+closeButtonPopupImage.addEventListener('click', ()=> closePopup(popupImageBig));
 
 
 function readerList (){
@@ -129,7 +129,7 @@ function addImage(event){
     const newItem = composeItem({name: newTitle, link: newLink});
     listCardsElement.prepend(newItem);
     formAdd.reset()
-    closeButton(popupAddImage)
+    closePopup(popupAddImage)
 }
 
 
@@ -138,7 +138,7 @@ const popupList = Array.from(document.querySelectorAll(".popup"));
 popupList.forEach((popupElement) => {
 popupElement.addEventListener("click",function(event) {
  if (event.target == popupElement) {
-    closeButton(popupElement);
+    closePopup(popupElement);
     }
  });
 });
