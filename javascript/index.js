@@ -1,22 +1,23 @@
 const profileButtonNode = document.querySelector('.profile__button-edit')
-const popupNode = document.querySelector('.popup')
-const profileCloseButtonNode = document.querySelector('.popup__close-button')
-const form = document.querySelector('.popup__form')
 const profileName = document.querySelector('.profile__name')
 const profileJob = document.querySelector('.profile__job')
 const nameInput = document.querySelector('.popup__field_value_name');
 const jobInput = document.querySelector('.popup__field_value_job'); 
 const listCardsElement = document.querySelector('.elements');
 const popupEdForm = document.querySelector('#popup_ed')
+const profileCloseButtonNode = popupEdForm.querySelector('.popup__close-button')
+const formEd = popupEdForm.querySelector('#form_ed')
 const popupAddImage = document.querySelector('#popup_add')
+const popImageAddCloseButton = popupAddImage.querySelector('.popup__close-button-add')
 const popupImageBig = document.querySelector('#popup_img')
 const imageAddButton = document.querySelector('.profile__button-add')
-const popImageAddCloseButton = document.querySelector('.popup__close-button-add')
 const placeInput = document.querySelector('.popup__field_value_place')
 const linkInput = document.querySelector('.popup__field_value_link')
-const fornAdd = document.querySelector('.popup__form_add')
+const formAdd = document.querySelector('.popup__form_add')
 const formAddSubmitButton = document.querySelector('.popup__submit-button_add')
-const closeButtonPopupImage = document.querySelector('.popup__close-button-img')
+const closeButtonPopupImage = popupImageBig.querySelector('.popup__close-button-img')
+const imagePopup = document.querySelector('.popup__image')
+const titlePopup = document.querySelector('.popup__title')
 const initialCards = [
     {
         name: 'Архыз',
@@ -44,28 +45,13 @@ const initialCards = [
     }
 ]; 
 
-//закрытие поп-апа нажатием на Esc
 
-//document.addEventListener('keydown', function (e) {
-  //if (e.key === 'Escape') {
-   //const popupActive = document.querySelector('.popup_opened')
-   // handlePopupCloseButton(popupActive)
-    // }
-//});
-
-//const handlyKeyDown = (event) =>{
-   //if (e.key === 'Escape')
-   //console.log("press")
-   //const popupActive = document.querySelector('.popup_opened')
-   //handlePopupCloseButton(popupActive)
-//}
-
-function hadlyPopupOpenButton(popupNode) {
+function openPopup(popupNode) {
     document.addEventListener('keydown', handleKeyDown);
     popupNode.classList.add('popup_opened');
-    }
+}
 
-function handlePopupCloseButton(popupNode) {
+function closeButton(popupNode) {
     document.removeEventListener('keydown',handleKeyDown);
     popupNode.classList.remove('popup_opened');
 };
@@ -73,7 +59,7 @@ function handlePopupCloseButton(popupNode) {
 const handleKeyDown = (e) => {
     if (e.key === 'Escape') {
         const popupActive = document.querySelector('.popup_opened')
-        handlePopupCloseButton(popupActive)
+        closeButton(popupActive)
         console.log('presed')
          } 
 }
@@ -82,25 +68,25 @@ function formSubmitHandler (event) {
     event.preventDefault();
     profileName.textContent = nameInput.value;
     profileJob.textContent = jobInput.value;
-    handlePopupCloseButton(popupEdForm);
+    closeButton(popupEdForm);
 };
 
 //Открытие и закрытие поп-апа с формой
-profileButtonNode.addEventListener ('click',()=> hadlyPopupOpenButton(popupEdForm),()=>{
+profileButtonNode.addEventListener ('click',()=>{
     nameInput.value = profileName.textContent;
     jobInput.value = profileJob.textContent; 
+    openPopup(popupEdForm)
 
-}
-)
-profileCloseButtonNode.addEventListener('click', ()=> handlePopupCloseButton (popupEdForm));
-form.addEventListener('submit', formSubmitHandler);
+})
+profileCloseButtonNode.addEventListener('click', ()=> closeButton (popupEdForm));
+formEd.addEventListener('submit', formSubmitHandler);
 
 //Открытие и закрытие поп-апа с добавление мест
-popImageAddCloseButton.addEventListener('click', ()=> handlePopupCloseButton(popupAddImage));
-imageAddButton.addEventListener('click', ()=> hadlyPopupOpenButton(popupAddImage))
+popImageAddCloseButton.addEventListener('click', ()=> closeButton(popupAddImage));
+imageAddButton.addEventListener('click', ()=> openPopup(popupAddImage))
 
 //закрытие поп-апа с изображением
-closeButtonPopupImage.addEventListener('click', ()=> handlePopupCloseButton(popupImageBig));
+closeButtonPopupImage.addEventListener('click', ()=> closeButton(popupImageBig));
 
 
 function readerList (){
@@ -123,10 +109,8 @@ function composeItem(item) {
     newItem.querySelector('.element__button-delet').addEventListener('click',function (event){
           event.target.closest('.element').remove()
     })
-    newItem.querySelector('.element__image').addEventListener('click', (event) => {
-            hadlyPopupOpenButton(popupImageBig)
-            const imagePopup = document.querySelector('.popup__image')
-            const titlePopup = document.querySelector('.popup__title')
+    imageCard.addEventListener('click', () => {
+            openPopup(popupImageBig)
             imagePopup.src = item.link
             titlePopup.textContent = item.name
             imagePopup.alt = item.name
@@ -135,8 +119,7 @@ function composeItem(item) {
     return newItem;  
 }
 //Сохранение новых картинок
-const imageAddSubmitButton = document.querySelector('.popup__submit-button-add');
-imageAddSubmitButton.addEventListener('click',addImage);
+formAdd.addEventListener('submit',addImage);
 readerList()
 
 function addImage(event){
@@ -145,8 +128,8 @@ function addImage(event){
     const newTitle = placeInput.value;
     const newItem = composeItem({name: newTitle, link: newLink});
     listCardsElement.prepend(newItem);
-    fornAdd.reset()
-    handlePopupCloseButton(popupAddImage)
+    formAdd.reset()
+    closeButton(popupAddImage)
 }
 
 
@@ -155,7 +138,7 @@ const popupList = Array.from(document.querySelectorAll(".popup"));
 popupList.forEach((popupElement) => {
 popupElement.addEventListener("click",function(event) {
  if (event.target == popupElement) {
-    popupElement.classList.remove('popup_opened');
+    closeButton(popupElement);
     }
  });
 });

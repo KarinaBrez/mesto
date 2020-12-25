@@ -53,7 +53,7 @@ const enableValidation = (config) => {
   });
 };
 
-const ValidationConfig = {
+const validationConfig = {
   formSelector: '.popup__form',
   inputSelector: '.popup__field',
   submitButtonSelector: '.popup__submit-button',
@@ -61,5 +61,5 @@ const ValidationConfig = {
   inputErrorClass: 'popup__field_type_error',
   errorClass: 'popup__field-error_active'
 }
-enableValidation(ValidationConfig);
+enableValidation(validationConfig);
 
