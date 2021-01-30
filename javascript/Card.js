@@ -1,18 +1,18 @@
 import {openPopup} from './utils.js'
 import {imagePopup,titlePopup,popupImageBig} from './index.js'
-
 export class Card{
-    constructor(data){
+    constructor(data,cardSelector){
 this._name = data.name
 this._link = data.link
+this._cardSelector = cardSelector
 
 }
 _getTemplate(){
     const templateElement = document
-    .querySelector('.template')
-    .content
-    .querySelector('.element')
-    .cloneNode(true);
+    .querySelector(this._cardSelector)
+    .content 
+    .querySelector('.element') 
+    .cloneNode(true);  
     return templateElement
 } 
 generateCard(){
@@ -35,10 +35,6 @@ _showPopupImage(){
     titlePopup.textContent = this._name
     imagePopup.alt = this._link
     openPopup(popupImageBig);
-}
-_renderItem = () =>{
-    const item = new Card
-    item.querySelector()
 }
 _setEventListeners(){
     this._element.querySelector('.element__button').addEventListener('click', () =>{

@@ -61,10 +61,11 @@ export const validationConfig = {
       })
     }
     
-    enableValidation() {
+    enableValidation () {
       this._setEventListener()
-      this._form.addEventListener('submit', () => 
-      this.setButtonState(this._form.checkValidity())
+      this._form.addEventListener('submit', (event) => {
+      event.preventDefault()
+      this.setButtonState(this._form.checkValidity())}
       );
     }
   }

@@ -50,17 +50,17 @@ const initialCards = [
     }
 ]; 
 initialCards.forEach((item) => {
-    const card = new Card (item);
+    const card = new Card (item, '.template');
     const cardElement = card.generateCard();
     document.querySelector('.elements').append(cardElement);
 })
 
 //валидация формы с добавлением места
 const aValid = new FormValidator(validationConfig,formAdd)
-aValid.enableValidation(formAdd)
+aValid.enableValidation()
 //валидация формы с редактирование формы
 const bValid = new FormValidator(validationConfig,formEd)
-bValid.enableValidation(formEd)
+bValid.enableValidation()
 
 
 function formSubmitHandler (event) {
