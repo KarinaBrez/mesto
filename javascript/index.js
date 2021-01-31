@@ -99,7 +99,7 @@ function addImage(event){
     event.preventDefault();
     const newImage = linkInput.value;
     const newTitle = placeInput.value;
-    const newItem = new Card ({link:newImage,name:newTitle}).generateCard()
+    const newItem = new Card ({link:newImage,name:newTitle},'.template').generateCard()
     listCardsElement.prepend(newItem);
     formAdd.reset()
     closePopup(popupAddImage)
