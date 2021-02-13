@@ -4,16 +4,15 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Mesto</title>
-  <link rel="stylesheet" href="pages/index.css">
 </head>
 <body>
    <div class ="page">
       <header class ="header">
-         <img class ="header__logo" src="images/Logo_mesto.svg" alt ="Логотип">
+         <img class ="header__logo" src= "<%=require('./images/Logo_mesto.svg')%>" alt ="Логотип">
      </header>
      <main class="content">
       <section class="profile">
-        <img class="profile__avatar" src="images/zhak_iv.jpg" alt="Аватар">
+        <img class="profile__avatar" src="<%=require('./images/zhak_iv.jpg')%>" alt="Аватар">
         <div class="profile__info">
           <h1 class="profile__name">Жак-Ив Кусто</h1>
           <p class="profile__job">Исследователь океана</p> 
@@ -40,7 +39,7 @@
        <div class="popup__container">
               <button type="button" class="popup__close-button"></button>
               <h2 class = "popup__header">Редактировать профиль</h2>
-              <form name="form" class = "popup__form" id ="form_ed" novalidate>
+                <form name="form" class = "popup__form" id ="form_ed" novalidate>
                   <input class ="popup__field popup__field_value_name"
                   type="text" name="name" minlength ="2" maxlength="40" required id='name' placeholder="Имя">
                   <span id="name-error" class ="error"></span> 
@@ -49,20 +48,20 @@
                <span id="job-error" class ="error"></span>
                <button type ="submit" class="popup__submit-button">Сохранить</button>
               </form> 
-        </div>
+            </div>
      </div>
         <div class="popup" id="popup_add">
          <div class="popup__container popup__container_add ">
                 <button type="button" class="popup__close-button popup__close-button-add"></button>
                 <h2 class = "popup__header">Новое место</h2>
-                <form name="form" class ="popup__form popup__form_add " novalidate>
+                <form name="form" class ="popup__form popup__form_add" id ="form_add" novalidate>
                  <input class ="popup__field popup__field_value_place" 
                  type="text" name="place"  placeholder="Название" minlength ="2" maxlength ="30" required id='place'>
                  <span id="place-error" class = "error"></span>
                  <input class ="popup__field popup__field_value_link"
                  type="url" name="link" placeholder="Ссылка на картинку" required id='link'>
                  <span id="link-error" class = "error"></span>
-                 <button type ="submit" class="popup__submit-button popup__submit-button-add">Создать</button>
+                 <button type ="submit" class="popup__submit-button popup__submit-button_invalid" disabled = true >Создать</button>
                 </form> 
           </div>
         </div>
@@ -74,6 +73,5 @@
            </div>
          </div>
    </div>
-   <script type="module" src="./javascript/index.js"></script>
 </body>
 </html>
