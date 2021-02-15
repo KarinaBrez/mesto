@@ -3,8 +3,6 @@ export default class Card{
     constructor({item,handleCardClick},cardSelector){
 this._name = item.name
 this._link = item.link
-this._imagePopup = item.imagePopup
-this._titlePopup = item.titlePopup
 this._cardSelector = cardSelector
 this._handleCardClick = handleCardClick
 }

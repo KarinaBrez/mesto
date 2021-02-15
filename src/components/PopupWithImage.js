@@ -13,9 +13,7 @@ open(name,link){
     this._imagePopup.alt = name
     super.open()
 }
-close() {
-    super.close()
-}
+
 setEventListeners(){
     super.setEventListeners()    
 }

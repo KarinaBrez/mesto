@@ -8,7 +8,6 @@ export default class Popup {
   open(){
     this._popupSelector.classList.add('popup_opened');
    document.addEventListener('keydown', this._handleEscClosee);
-    console.log("press")
   }  
 
   close(){
@@ -19,7 +18,6 @@ export default class Popup {
  _handleEscClosee(e){
     if (e.key === 'Escape') {
         this.close();
-        console.log('presed')
          } 
   }
 
