@@ -11,21 +11,24 @@ listCardsElement,popupEdForm,formEd,popupImageBig,imageAddButton, formAdd,initia
 
 // Открытие и закрытие поп-апа с изображением
 const showImage = new PopupWithImage (popup_img)
-  
+
+function createCard(item){
+    const card = new Card ({ 
+        item, 
+        handleCardClick:(name,link) =>{ 
+            showImage.open(name,link) 
+        } 
+    },'.template') 
+       const cardElement = card.generateCard()
+       cardTemplate.addItem(cardElement)
+}
+
+
 //Создание карточки
 const cardTemplate = new Section ({ 
     items: initialCards, 
-    renderer: (item) => { 
-           const card = new Card ({ 
-            item, 
-            handleCardClick:(name,link) =>{ 
-                showImage.open(name,link) 
-            } 
-        },'.template') 
-           const cardElement = card.generateCard(); 
-           cardTemplate.addItem(cardElement) 
-       } 
- },listCardsElement); 
+    renderer: createCard,},
+    listCardsElement); 
  showImage.setEventListeners() 
  cardTemplate.renderItems() 
 
@@ -66,14 +69,8 @@ const formAddImage = new PopupWithForm({
             name: data.place, 
             link: data.link 
         } 
-    const newItem = new Card ({ 
-        item: item,   
-        handleCardClick: () =>{ 
-        showBigImage.open()  
-        } 
-    }, '.template') 
-    const cardElement = newItem.generateCard(); 
-    cardTemplate.addItem(cardElement) 
+    createCard(item),
+    formAddImage.close()
     } 
 }) 
 formAddImage.setEventListeners() 
