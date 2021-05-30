@@ -39,3 +39,5 @@
 @import url('../block/error/error.css');
 @import url('../block/popup/__field/_type_error/popup__field_type_error.css');
 @import url('../block/popup/__submit-button/_invalid/popup__submit-button_invalid.css');
+@import url('../block/element/__number-like/element__number-like.css');
+@import url('../block/element/__button-delet/_hidden/element__delet-button_hidden.css');

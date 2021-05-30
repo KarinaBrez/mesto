@@ -3,7 +3,7 @@
   z-index: 0;
   display: grid;
   grid-template-columns: 240px 1fr;
-  grid-template-rows: 1fr 79px;
+  grid-template-rows: 1fr 69px 10px;
   margin: 0;
   padding: 0;
   max-width: 880px;
