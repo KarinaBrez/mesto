@@ -26,12 +26,12 @@ close(){
 }
 
 setEventListeners() {
-    super.setEventListeners();
     this._formSelector.addEventListener('submit', (evt) => {
       evt.preventDefault();
       this._handleFormSubmit(this._getInputValues());
 
     })
+    super.setEventListeners();
   }
   renderLoading(isSending) {
     this._button.textContent = isSending ? 'Сохранение...' : this._buttonText;

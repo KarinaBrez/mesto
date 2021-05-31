@@ -67,7 +67,8 @@ _updateLikesView() {
 isLiked() {
   return Boolean(this._likes.find(item => item._id === this._userId));
 }
-setLikes() {
+setLikes(data) {
+  this._likes = data.likes;
   this._updateLikesView();
 }
 }

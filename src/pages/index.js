@@ -105,7 +105,7 @@ const formAddImage = new PopupWithForm({
         }  
         api.addNewCard(item)
         .then((cardData)=>{
-            createCard(cardData)
+            cardTemplate.addItem(createCard(cardData))
         })
         .catch((err) => { console.log(err); })  
         .finally(() => formAddImage.renderLoading(false));
@@ -141,7 +141,10 @@ const formEdProfile = new PopupWithForm({
 formEdProfile.setEventListeners()
 
 profileButtonNode.addEventListener ('click',()=>{
-    //userInfo.getUserInfo(nameInput,jobInput)
+    userInfo.getUserInfo(
+        nameInput.value = profileName.textContent,
+        jobInput.value = profileJob.textContent,
+    )
     formEdProfile.open()
 })
 
@@ -167,6 +170,9 @@ const formEditAvatar = new PopupWithForm ({
     formEditAvatar.setEventListeners() 
     
     profileAvatar.addEventListener('click',()=>{
+        const buttonSubmitAvatar = document.querySelector('#button_submit-avatar')
+        buttonSubmitAvatar.classList.add('popup__submit-button_invalid')
+        buttonSubmitAvatar.disabled = true
         formEditAvatar.open()
     })
     

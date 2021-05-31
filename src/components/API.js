@@ -53,7 +53,8 @@ addNewCard({name,link}){
     return fetch (`${this._baseUrl}/cards`, {
         method: "POST",
         headers: this._headers,
-        body: JSON.stringify({name,
+        body: JSON.stringify({
+            name,
             link,
         })
     })
@@ -93,4 +94,18 @@ changeLikeCardStatus(cardID, like) {
         return Promise.reject(`Ошибка: ${res.status}`)
     })    
   }
+  deletCard(cardID) {
+    return fetch(`${this._baseUrl}/cards/${cardID}`, {
+      method: 'DELETE',
+      headers: this._headers,
+    })
+    .then((res) =>{
+        if(res.ok){
+            return res.json();
+        }
+    
+        return Promise.reject(`Ошибка: ${res.status}`)
+    })    
+  }
 }
+
