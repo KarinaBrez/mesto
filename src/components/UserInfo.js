@@ -11,15 +11,15 @@ this._profileAvatar = profileAvatar
 
 getUserInfo() {
     return {
-    nameInput: this._profileName.textContent,
-    jobInput: this._profileJob.textContent,
-    inputAvatar: this._profileAvatar.style.backgroundImage
+    userName: this._profileName.textContent,
+    userDescription: this._profileJob.textContent,
+    userAvatar: this._profileAvatar.style.backgroundImage
 }
 }
 
-setUserInfo ({nameInput,jobInput,inputAvatar}){
-this._profileName.textContent = nameInput;
-this._profileJob.textContent = jobInput;
-this._profileAvatar.style.backgroundImage = `url(${inputAvatar})`;
+setUserInfo ({userName, userDescription, userAvatar}){
+if (userName) this._profileName.textContent = userName;
+if (userDescription) this._profileJob.textContent = userDescription;
+if (userAvatar) this._profileAvatar.style.backgroundImage = `url(${userAvatar})`;
 }
 }

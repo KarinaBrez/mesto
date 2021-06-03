@@ -20,10 +20,6 @@ export default class PopupWithForm extends Popup{
     return data;
 }
 
-close(){
- super.close()
- this._formSelector.reset()
-}
 
 setEventListeners() {
     this._formSelector.addEventListener('submit', (evt) => {
@@ -32,7 +28,12 @@ setEventListeners() {
 
     })
     super.setEventListeners();
+   
   }
+  close(){
+    this._formSelector.reset()
+    super.close()
+   }
   renderLoading(isSending) {
     this._button.textContent = isSending ? 'Сохранение...' : this._buttonText;
   }

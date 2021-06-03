@@ -24,7 +24,8 @@ _getTemplate(){
 //Создание карточки
 generateCard(){
     this._element = this._getTemplate();
-    this._setEventListeners()
+    this._setEventListeners();
+    this._updateLikesView();
 
     if (this._ownerId === this._userId){
         this._element.querySelector('.element__button-delet').classList.remove('element__button-delet_hidden')

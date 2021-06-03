@@ -1,29 +1,19 @@
 import './index.css'; 
 import Card from '../components/Card.js' 
-import {FormValidator} from '../components/FormValidator.js' 
+import FormValidator from '../components/FormValidator.js' 
 import Section from '../components/Section.js' 
 import UserInfo from '../components/UserInfo.js' 
 import PopupWithImage from '../components/PopupWithImage.js' 
 import PopupWithForm from '../components/PopupWithForm.js' 
 import {profileButtonNode,profileName,profileJob,nameInput,jobInput, 
-listCardsElement,popupEdForm,formEd,popupImageBig,imageAddButton, formAdd,validationConfig,profileAvatar,formEdAvatar,inputAvatar} from '../utils/constans.js' 
+listCardsElement,formEd,imageAddButton, formAdd,validationConfig,profileAvatar,formEdAvatar} from '../utils/constans.js' 
 import Api from '../components/API.js' 
 import PopupDeletCard from '../components/PopupDeletCard.js' 
 
 
-//валидация формы с добавлением места 
-const aValid = new FormValidator(validationConfig,formAdd) 
-aValid.enableValidation() 
-//валидация формы с редактирование формы 
-const bValid = new FormValidator(validationConfig,formEd) 
-bValid.enableValidation() 
-//валидация формы с редактированием аватара
-const сValid = new FormValidator(validationConfig,formEdAvatar) 
-сValid.enableValidation() 
 
-
-
-const userInfo = new UserInfo(profileName,profileJob,profileAvatar) 
+const userInfo = new UserInfo(profileName,
+    profileJob,profileAvatar) 
  
 
 //Класс API
@@ -51,7 +41,19 @@ const deletCardPopup = new PopupDeletCard ({
 })
     deletCardPopup.setEventListeners()
 
-    
+
+//валидация формы с добавлением места 
+const validAddImage = new FormValidator(validationConfig,formAdd) 
+validAddImage.enableValidation() 
+//валидация формы с редактирование формы 
+const bValid = new FormValidator(validationConfig,formEd) 
+bValid.enableValidation() 
+//валидация формы с редактированием аватара
+const сValid = new FormValidator(validationConfig,formEdAvatar) 
+сValid.enableValidation() 
+
+
+
 //создание карточки
 const createCard = (cardData) => {
     const card = new Card ({
@@ -107,12 +109,15 @@ const formAddImage = new PopupWithForm({
         .then((cardData)=>{
             cardTemplate.addItem(createCard(cardData))
         })
-        .catch((err) => { console.log(err); })  
+        .catch((err) => {console.log(err); })  
         .finally(() => formAddImage.renderLoading(false));
         formAddImage.close()
+        
     } 
 }) 
 formAddImage.setEventListeners() 
+
+
 
 imageAddButton.addEventListener('click', ()=>{
     const buttonSubmit = document.querySelector('#button_submit')
@@ -128,11 +133,14 @@ const formEdProfile = new PopupWithForm({
     formSelector: form_ed,
     handleFormSubmit:(data)=>{
         formEdProfile.renderLoading(true);
-        api.editProfile(data)
-        .then(()=>{
+        api.editProfile({
+            name: data.name,
+            job: data.job,
+        })
+        .then((info)=>{
         userInfo.setUserInfo({
-            nameInput:nameInput.value,
-            jobInput:jobInput.value})
+            userName: info.name,
+            userDescription: info.about})
          })  
           .finally(() => formEdProfile.renderLoading(false));
           formEdProfile.close() 
@@ -151,13 +159,15 @@ profileButtonNode.addEventListener ('click',()=>{
 //изменение аватара
 const formEditAvatar = new PopupWithForm ({
     popupSelector: popup_avatar, 
-    formSelector: form_avatar, 
+    formSelector: formEdAvatar, 
     handleFormSubmit:(data)=>{ 
         formEditAvatar.renderLoading(true)
-        api.editAvatar(data)
+        api.editAvatar({
+            avatar: data.avatar
+        })
                 .then((info) =>{
                     userInfo.setUserInfo({
-                        inputAvatar: info.avatar
+                        userAvatar: info.avatar
                     }) 
                 })
                 .catch((err) => {
@@ -176,25 +186,16 @@ const formEditAvatar = new PopupWithForm ({
         formEditAvatar.open()
     })
     
-    
-fetch('https://mesto.nomoreparties.co/v1/cohort-21/cards', {
-    headers: {
-      authorization: '740f9597-869e-4a07-8bee-47ad4b50f4a9'
-    }
-  })
-    .then(res => res.json())
-    .then((result) => {
-      console.log(result);
-    });
+
   
     //запрос ID  пользователя, данные с сервера
- Promise.all([api.getProfile(),api.getAllCards()])
- .then(([userData, cards]) => {
+ Promise.all([api.getAllCards(),api.getProfile()])
+ .then(([cards,userData]) => {
  userId = userData._id
   userInfo.setUserInfo({
-     nameInput: userData.name,
-     jobInput: userData.about,
-     inputAvatar: userData.avatar
+     userName: userData.name,
+     userDescription: userData.about,
+     userAvatar: userData.avatar
   })
   cardTemplate.renderItems(cards.reverse());
   })

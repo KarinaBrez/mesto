@@ -1,5 +1,5 @@
 
-  export class FormValidator {
+  export default class FormValidator {
     constructor (config, form) {
       this._form = form
       this._formSelector = config.formSelector
@@ -57,7 +57,8 @@
       this._setEventListener()
       this._form.addEventListener('submit', (event) => {
       event.preventDefault()
-      this.setButtonState(this._form.checkValidity())}
+      this.setButtonState(this._form.checkValidity())
+    }
       );
     }
   }

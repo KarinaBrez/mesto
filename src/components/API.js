@@ -81,7 +81,7 @@ editAvatar(data){
         return Promise.reject(`Ошибка: ${res.status}`)
     })    
 }
-changeLikeCardStatus(cardID, like) {
+changeLikeCardStatus(cardID,like) {
     return fetch(`${this._baseUrl}/cards/likes/${cardID}`, {
       method: like ? 'PUT' : 'DELETE',
       headers: this._headers,
