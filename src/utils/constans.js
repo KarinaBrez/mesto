@@ -12,7 +12,10 @@ export const imageAddButton = document.querySelector('.profile__button-add');
 export const formAdd = document.querySelector('.popup__form_add');
 export const deletButton = document.querySelector('.element__button-delet');
 export const formEdAvatar = document.querySelector('#form_avatar');
-export const inputAvatar = document.querySelector('.popup__field_value_avatar')
+export const inputAvatar = document.querySelector('.popup__field_value_avatar');
+export const placesWrap = '.element__template';
+
+
 
 export const validationConfig = {
     formSelector: '.popup__form',

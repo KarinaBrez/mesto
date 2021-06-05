@@ -32,6 +32,7 @@ generateCard(){
     }
     this._element.querySelector('.element__image').src = this._link
     this._element.querySelector('.element__title').textContent = this._name;
+    this._element.querySelector('.element__image').textContent = this._name;
     return this._element;
 }
 //удаление карточки
@@ -40,7 +41,7 @@ removeCard(){
     this._element = null
 }
 //запрос ID карточки
-Id() {
+getCardId() {
     return this._cardId;
   }
  // навешевание события

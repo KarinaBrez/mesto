@@ -6,7 +6,7 @@ import UserInfo from '../components/UserInfo.js'
 import PopupWithImage from '../components/PopupWithImage.js' 
 import PopupWithForm from '../components/PopupWithForm.js' 
 import {profileButtonNode,profileName,profileJob,nameInput,jobInput, 
-listCardsElement,formEd,imageAddButton, formAdd,validationConfig,profileAvatar,formEdAvatar} from '../utils/constans.js' 
+listCardsElement,imageAddButton, formAdd,validationConfig,profileAvatar,formEdAvatar,placesWrap,formEd} from '../utils/constans.js' 
 import Api from '../components/API.js' 
 import PopupDeletCard from '../components/PopupDeletCard.js' 
 
@@ -35,7 +35,7 @@ const showImage = new PopupWithImage (popup_img)
 
 //открытие попапа для подверждения удаления
 const deletCardPopup = new PopupDeletCard ({
-    popupSelector: popup_del,
+    popupElement: popup_del,
     formSelector: form_del,
     handleFormSubmit:()=>{}
 })
@@ -43,14 +43,14 @@ const deletCardPopup = new PopupDeletCard ({
 
 
 //валидация формы с добавлением места 
-const validAddImage = new FormValidator(validationConfig,formAdd) 
-validAddImage.enableValidation() 
+const addCardFormValidator = new FormValidator(validationConfig,formAdd) 
+addCardFormValidator.enableValidation() 
 //валидация формы с редактирование формы 
-const bValid = new FormValidator(validationConfig,formEd) 
-bValid.enableValidation() 
+const editProfileFormValidator = new FormValidator(validationConfig,formEd) 
+editProfileFormValidator.enableValidation() 
 //валидация формы с редактированием аватара
-const сValid = new FormValidator(validationConfig,formEdAvatar) 
-сValid.enableValidation() 
+const editAvatarFormValidator = new FormValidator(validationConfig,formEdAvatar) 
+editAvatarFormValidator.enableValidation() 
 
 
 
@@ -62,9 +62,9 @@ const createCard = (cardData) => {
         showImage.open(name,link)
       },
       handleDeletClick: ()=>{
-        deletCardPopup.Submit(()=>{
+        deletCardPopup.submit(()=>{
             deletCardPopup.renderLoading(true)
-            api.deletCard(card.Id())
+            api.deletCard(card.getCardId())
             .then(()=>{
                 card.removeCard()
                 deletCardPopup.close()
@@ -75,21 +75,21 @@ const createCard = (cardData) => {
         }),deletCardPopup.open()
         },
         handleLikeClick: () => {
-            api.changeLikeCardStatus(card.Id(), !card.isLiked())
+            api.changeLikeCardStatus(card.getCardId(), !card.isLiked())
         .then(data => {
           card.setLikes({ ...data });
         })
         .catch(err => console.log(`Ошибка изменения статуса лайка: ${err}`))
           },
          
-   },'.template') 
+   }, placesWrap) 
    return card.generateCard();
    
   }
    //создание разметки 
-const cardTemplate = new Section ({  
+const cardsList = new Section ({  
     renderer: (item)=>{
-        cardTemplate.addItem(createCard(item))},
+        cardsList.addItem(createCard(item))},
        
    },
    listCardsElement);    
@@ -97,7 +97,7 @@ const cardTemplate = new Section ({
 
   //откртыие и закрытие поп-апа с добавление фото
 const formAddImage = new PopupWithForm({ 
-    popupSelector: popup_add, 
+    popupElement: popup_add, 
     formSelector: form_add, 
     handleFormSubmit:(data)=>{ 
         formAddImage.renderLoading(true);
@@ -107,12 +107,11 @@ const formAddImage = new PopupWithForm({
         }  
         api.addNewCard(item)
         .then((cardData)=>{
-            cardTemplate.addItem(createCard(cardData))
+            cardsList.addItem(createCard(cardData))
+            formAddImage.close()
         })
         .catch((err) => {console.log(err); })  
-        .finally(() => formAddImage.renderLoading(false));
-        formAddImage.close()
-        
+        .finally(() => formAddImage.renderLoading(false));    
     } 
 }) 
 formAddImage.setEventListeners() 
@@ -129,7 +128,7 @@ imageAddButton.addEventListener('click', ()=>{
 //Редактирование профиля
 //открытие и закрытие поп-апа с редактирование профиля
 const formEdProfile = new PopupWithForm({
-    popupSelector: popup_ed,
+    popupElement: popup_ed,
     formSelector: form_ed,
     handleFormSubmit:(data)=>{
         formEdProfile.renderLoading(true);
@@ -141,24 +140,24 @@ const formEdProfile = new PopupWithForm({
         userInfo.setUserInfo({
             userName: info.name,
             userDescription: info.about})
-         })  
+            formEdProfile.close() 
+         }) 
+          .catch((err) => {console.log(err); })   
           .finally(() => formEdProfile.renderLoading(false));
-          formEdProfile.close() 
     }
 })
 formEdProfile.setEventListeners()
 
 profileButtonNode.addEventListener ('click',()=>{
-    userInfo.getUserInfo(
-        nameInput.value = profileName.textContent,
-        jobInput.value = profileJob.textContent,
-    )
-    formEdProfile.open()
+    const currentUserInfo = userInfo.getUserInfo()
+        nameInput.value = currentUserInfo.userName,
+        jobInput.value = currentUserInfo.userDescription;
+       formEdProfile.open()
 })
 
 //изменение аватара
 const formEditAvatar = new PopupWithForm ({
-    popupSelector: popup_avatar, 
+    popupElement: popup_avatar, 
     formSelector: formEdAvatar, 
     handleFormSubmit:(data)=>{ 
         formEditAvatar.renderLoading(true)
@@ -169,12 +168,12 @@ const formEditAvatar = new PopupWithForm ({
                     userInfo.setUserInfo({
                         userAvatar: info.avatar
                     }) 
+                    formEditAvatar.close() 
                 })
                 .catch((err) => {
                     console.log(err);
                  })
                  .finally(() => formEditAvatar.renderLoading(false));  
-                 formEditAvatar.close() 
     } 
     }) 
     formEditAvatar.setEventListeners() 
@@ -197,6 +196,7 @@ const formEditAvatar = new PopupWithForm ({
      userDescription: userData.about,
      userAvatar: userData.avatar
   })
-  cardTemplate.renderItems(cards.reverse());
+  cardsList.renderItems(cards.reverse());
   })
  .catch(err => console.log(`Ошибка загрузки данных: ${err}`))
+

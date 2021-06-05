@@ -6,18 +6,16 @@ export default class Api{
 
     }
 
+getResponse(res) {
+ return res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`)
+ }
+
 getProfile() {
 return fetch (`${this._baseUrl}/users/me`, {
     method: "GET",
     headers: this._headers
 })
-.then((res) =>{
-    if(res.ok){
-        return res.json();
-    }
-
-    return Promise.reject(`Ошибка: ${res.status}`)
-})
+.then(this.getResponse)
 }
 //Добавление карточек с сервера
 getAllCards(){
@@ -25,13 +23,7 @@ getAllCards(){
         method: "GET",
         headers: this._headers
     })
-    .then((res) =>{
-        if(res.ok){
-            return res.json();
-        }
-    
-        return Promise.reject(`Ошибка: ${res.status}`)
-    })  
+    .then(this.getResponse) 
 }
 //редактирование профиля
 editProfile(data){
@@ -40,13 +32,7 @@ editProfile(data){
         headers: this._headers,
         body: JSON.stringify({name:`${data.name}`, about:`${data.job}`})
     })
-    .then((res) =>{
-        if(res.ok){
-            return res.json();
-        }
-    
-        return Promise.reject(`Ошибка: ${res.status}`)
-    })   
+    .then(this.getResponse) 
 }
 //добавление новой карточки
 addNewCard({name,link}){
@@ -58,13 +44,7 @@ addNewCard({name,link}){
             link,
         })
     })
-    .then((res) =>{
-        if(res.ok){
-            return res.json();
-        }
-    
-        return Promise.reject(`Ошибка: ${res.status}`)
-    })   
+    .then(this.getResponse)  
 }
 //редактирование аватара
 editAvatar(data){
@@ -73,39 +53,21 @@ editAvatar(data){
         headers: this._headers,
         body: JSON.stringify({avatar: `${data.avatar}`})
     })
-    .then((res) =>{
-        if(res.ok){
-            return res.json();
-        }
-    
-        return Promise.reject(`Ошибка: ${res.status}`)
-    })    
+    .then(this.getResponse)   
 }
 changeLikeCardStatus(cardID,like) {
     return fetch(`${this._baseUrl}/cards/likes/${cardID}`, {
       method: like ? 'PUT' : 'DELETE',
       headers: this._headers,
     })
-    .then((res) =>{
-        if(res.ok){
-            return res.json();
-        }
-    
-        return Promise.reject(`Ошибка: ${res.status}`)
-    })    
+    .then(this.getResponse)    
   }
   deletCard(cardID) {
     return fetch(`${this._baseUrl}/cards/${cardID}`, {
       method: 'DELETE',
       headers: this._headers,
     })
-    .then((res) =>{
-        if(res.ok){
-            return res.json();
-        }
-    
-        return Promise.reject(`Ошибка: ${res.status}`)
-    })    
+    .then(this.getResponse)   
   }
 }
 

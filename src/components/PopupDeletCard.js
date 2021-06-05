@@ -4,7 +4,7 @@ export default class PopupDeletCard extends PopupWithForm{
     constructor(handleFormSubmit){
         super(handleFormSubmit)
       }
-Submit(action){
+submit(action){
 this._handleFormSubmit = action;
 }
 }

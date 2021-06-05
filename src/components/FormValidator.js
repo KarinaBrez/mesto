@@ -14,20 +14,22 @@
       const error = this._form.querySelector(`#${this._input.id}-error`)
       error.textContent = this._input.validationMessage
       this._input.classList.add(this._inputErrorClass)
+      error.classList.add(this._errorClass)
     }
     
     _hideError() {
       const error = this._form.querySelector(`#${this._input.id}-error`)
       error.textContent = ''
-      this._input.classList.remove(this._inputErrorClass)
+      this._input.classList.remove(this._inputErrorClass);
+      error.classList.remove(this._errorClass)
     }
     
     _checkInputValidity(input) {
       this._input = input
-      if(this._input.validity.valid){
-        this._hideError()
+      if(!this._input.validity.valid){
+        this._showError(input,input.validationMessage)
       } else {
-        this._showError()
+        this._hideError(input)
       }
     }
     
@@ -42,9 +44,18 @@
       }
     }
     
+    _hideErrorMessages(){
+      const error = this._form.querySelector(`#${this._input.id}-error`)
+      error.textContent = ''
+      this._input.classList.remove(this._inputErrorClass);
+      error.classList.remove(this._errorClass)
+    }
+   
     _setEventListener() {
-      this._inputList = this._form.querySelectorAll(this._inputSelector)
-    
+      this._form.addEventListener('reset', () => {
+        this._hideErrorMessages();
+      })
+      this._inputList = Array.from(this._form.querySelectorAll(this._inputSelector))
       this._inputList.forEach(input => {
         input.addEventListener('input', ()=> {
           this._checkInputValidity(input)
@@ -55,10 +66,6 @@
     
     enableValidation () {
       this._setEventListener()
-      this._form.addEventListener('submit', (event) => {
-      event.preventDefault()
-      this.setButtonState(this._form.checkValidity())
-    }
-      );
+     
     }
   }
