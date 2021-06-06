@@ -30,9 +30,10 @@ generateCard(){
     if (this._ownerId === this._userId){
         this._element.querySelector('.element__button-delet').classList.remove('element__button-delet_hidden')
     }
-    this._element.querySelector('.element__image').src = this._link
+    const elementImage = this._element.querySelector('.element__image')
+    elementImage.src = this._link
     this._element.querySelector('.element__title').textContent = this._name;
-    this._element.querySelector('.element__image').textContent = this._name;
+    elementImage.alt = this._name;
     return this._element;
 }
 //удаление карточки

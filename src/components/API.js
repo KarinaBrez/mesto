@@ -6,7 +6,7 @@ export default class Api{
 
     }
 
-getResponse(res) {
+_getResponse(res) {
  return res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`)
  }
 
@@ -15,7 +15,7 @@ return fetch (`${this._baseUrl}/users/me`, {
     method: "GET",
     headers: this._headers
 })
-.then(this.getResponse)
+.then(this._getResponse)
 }
 //Добавление карточек с сервера
 getAllCards(){
@@ -23,7 +23,7 @@ getAllCards(){
         method: "GET",
         headers: this._headers
     })
-    .then(this.getResponse) 
+    .then(this._getResponse) 
 }
 //редактирование профиля
 editProfile(data){
@@ -32,7 +32,7 @@ editProfile(data){
         headers: this._headers,
         body: JSON.stringify({name:`${data.name}`, about:`${data.job}`})
     })
-    .then(this.getResponse) 
+    .then(this._getResponse) 
 }
 //добавление новой карточки
 addNewCard({name,link}){
@@ -44,7 +44,7 @@ addNewCard({name,link}){
             link,
         })
     })
-    .then(this.getResponse)  
+    .then(this._getResponse)  
 }
 //редактирование аватара
 editAvatar(data){
@@ -53,21 +53,21 @@ editAvatar(data){
         headers: this._headers,
         body: JSON.stringify({avatar: `${data.avatar}`})
     })
-    .then(this.getResponse)   
+    .then(this._getResponse)   
 }
 changeLikeCardStatus(cardID,like) {
     return fetch(`${this._baseUrl}/cards/likes/${cardID}`, {
       method: like ? 'PUT' : 'DELETE',
       headers: this._headers,
     })
-    .then(this.getResponse)    
+    .then(this._getResponse)    
   }
   deletCard(cardID) {
     return fetch(`${this._baseUrl}/cards/${cardID}`, {
       method: 'DELETE',
       headers: this._headers,
     })
-    .then(this.getResponse)   
+    .then(this._getResponse)   
   }
 }
 

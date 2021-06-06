@@ -119,9 +119,7 @@ formAddImage.setEventListeners()
 
 
 imageAddButton.addEventListener('click', ()=>{
-    const buttonSubmit = document.querySelector('#button_submit')
-    buttonSubmit.classList.add('popup__submit-button_invalid')
-    buttonSubmit.disabled = true
+    addCardFormValidator.setButtonState()
     formAddImage.open()
 })
 
@@ -179,9 +177,7 @@ const formEditAvatar = new PopupWithForm ({
     formEditAvatar.setEventListeners() 
     
     profileAvatar.addEventListener('click',()=>{
-        const buttonSubmitAvatar = document.querySelector('#button_submit-avatar')
-        buttonSubmitAvatar.classList.add('popup__submit-button_invalid')
-        buttonSubmitAvatar.disabled = true
+        editAvatarFormValidator.setButtonState()
         formEditAvatar.open()
     })
     
